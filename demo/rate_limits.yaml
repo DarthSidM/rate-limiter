@@ -1,0 +1,12 @@
+routes:
+  "GET /api/test":
+    algorithm: sliding_window
+    limit: 5
+    window_seconds: 60
+    fail_mode: closed
+
+  "GET /api/public":
+    algorithm: token_bucket
+    capacity: 10
+    refill_rate: 1
+    fail_mode: open

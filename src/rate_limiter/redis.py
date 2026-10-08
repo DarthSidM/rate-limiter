@@ -45,3 +45,10 @@ class RedisStore:
 
     async def close(self) -> None:
         await self._client.aclose()
+    async def clear(self) -> None:
+        try:
+            await self._client.flushdb()
+        except RedisError as exc:
+            raise RateLimiterUnavailableError(
+                "Redis operation failed"
+            ) from exc
